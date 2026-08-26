@@ -1,0 +1,8 @@
+﻿title: "농어업재해 손해평가사 시험 정보센터"
+description: "인력 수요가 급증하는 유망직, 농어업재해 손해평가사 자격증 취득 및 기출문제 정보를 제공합니다."
+url: "https://farm-job.enjoy-onepage.com"
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
