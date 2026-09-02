@@ -29,7 +29,7 @@ def generate_with_retry(prompt, is_json=False):
 def create_text_thumbnail(text, filename_prefix="thumb"):
     lines = text.strip().split('\n')
     lines = [line for line in lines if line.strip()][:3]
-    img_width, img_height = 1200, 675
+    img_width, img_height = 1200, 500
     background_color = (40, 50, 70)
     text_color = (255, 255, 255)
     try:
@@ -42,7 +42,7 @@ def create_text_thumbnail(text, filename_prefix="thumb"):
         except:
             font = ImageFont.load_default()
             
-        draw.rectangle([50, 50, img_width-50, img_height-50], outline=(100, 150, 200), width=3)
+        draw.rectangle([30, 30, img_width-30, img_height-30], outline=(100, 150, 200), width=3)
         y_text = (img_height // 2) - (len(lines) * 50)
         for line in lines:
             line = line.strip()
@@ -114,7 +114,10 @@ def generate_post(campaign, keyword):
     {draft}
     """
     final_text = generate_with_retry(rewrite_prompt)
+    
+    final_text = re.sub(r'(?i)^(?:#+\s*)?H[23]:\s*', '', final_text, flags=re.MULTILINE)
     final_text = re.sub(r'^---.*?---\s*', '', final_text, flags=re.DOTALL)
+
 
     meta_prompt = f"""
     이 글을 위한 JSON 데이터를 반환하세요:
@@ -122,7 +125,7 @@ def generate_post(campaign, keyword):
       'title': '{keyword}를 포함한 후킹되는 블로그 제목', 
       'thumb_hook': '{keyword} 관련 썸네일에 들어갈 짧은 두 줄짜리 텍스트', 
       'vibe_keywords': '픽사베이 영문 검색용 키워드 1개 (예: study, exam)',
-      'cta_text': '무료 확인하기 같은 뻔한 말 대신, 문맥에 맞는 부드러운 버튼 문구 (예: 내 조건에 맞는 맞춤형 플랜 계산해보기)'
+      'cta_text': '이 캠페인에 딱 맞는 가장 매혹적인 버튼 문구 1개 (예: 나의 예상 혜택 1분만에 확인하기, 올해 합격 가능성 진단받기)'
     }}
     """
     meta_json_str = generate_with_retry(meta_prompt, is_json=True)
