@@ -1,5 +1,8 @@
-name: Auto Publish
+﻿name: Auto Publish
 on:
+
+permissions:
+  contents: write
   schedule:
     - cron: '0 6,15,19 * * *'
   workflow_dispatch:
