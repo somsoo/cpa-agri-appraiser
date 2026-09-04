@@ -95,7 +95,7 @@ def download_vibe_image(img_url, filename_prefix):
 def generate_post(campaign, keyword):
     import datetime
     current_year = datetime.datetime.now().year
-    profile_prompt = f"당신은 30~50대를 타겟으로 하는 최상급 한국어 마케팅 카피라이터입니다. '{keyword}'의 타겟 유저가 가장 갈망하는 혜택이 무엇인지 3문장으로 분석하세요."
+    profile_prompt = f"당신은 30~50대를 위한 전문 '농어업 재해보험 및 손해평가사 시험 전문 수험 멘토'입니다. 주요 전문 분야: '1차/2차 시험 과목별 난이도, 비전공자 합격 공부법, 은퇴 후 실무 현장 조사와 활동 시기별 현실적 수입'. '{keyword}'의 타겟 유저가 가장 갈망하는 혜택과 현실적 고민이 무엇인지 전문가의 시각에서 3문장으로 날카롭게 분석하세요."
     profiling = generate_with_retry(profile_prompt)
     
     outline_prompt = f"'{profiling}'을 바탕으로 '{keyword}'에 대한 정보성 블로그 포스팅 목차(H2 3개)를 마크다운으로 작성하세요."
